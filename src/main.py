@@ -12,7 +12,6 @@ triton_client = httpclient.InferenceServerClient(url='localhost:8000', ssl=False
 
 @app.get("/infer")
 def create_item():
-    
     model_name = "simple"
 
     inputs = []
