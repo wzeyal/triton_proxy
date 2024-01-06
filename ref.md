@@ -33,6 +33,8 @@ latency = 10000
 
 # https://blog.ml6.eu/triton-ensemble-model-for-deploying-transformers-into-production-c0f727c012e3
 
+# https://www.youtube.com/watch?v=P7dvC31Ggxk&t=2262s
+
 
 
 with tritonhttpclient.InferenceServerClient(url=url, verbose=False, concurrency=32) as client:

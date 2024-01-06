@@ -1,8 +1,8 @@
 from locust import HttpUser, task
 
-class HelloWorldUser(HttpUser):
+class InferUser(HttpUser):
     @task
-    def hello_world(self):
+    def infer(self):
         self.client.get("/infer")
         
         

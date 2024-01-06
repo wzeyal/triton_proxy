@@ -162,3 +162,5 @@ cython_debug/
 .vscode/
 *.onnx
 *.pth
+tokenizer_pre_trained/*
+model_pre_trained/*

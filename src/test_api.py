@@ -14,7 +14,7 @@ class TestStringMethods(unittest.TestCase):
         json_response = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         output_name = json_response['outputs'][0]['name']
-        self.assertEqual(output_name, '1277')
+        self.assertEqual(output_name, 'output_0')
 
 
 if __name__ == '__main__':

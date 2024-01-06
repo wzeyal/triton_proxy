@@ -8,7 +8,7 @@ import uvicorn
 
 app = FastAPI()
 
-triton_client = httpclient.InferenceServerClient(url='localhost:8000', ssl=False)
+triton_client = httpclient.InferenceServerClient(url='localhost:8000', ssl=False, concurrency=3)
 
 @app.get("/infer")
 def create_item():
@@ -16,25 +16,22 @@ def create_item():
 
     inputs = []
     outputs = []
-    inputs.append(httpclient.InferInput("input.1", [1, 14], "INT64"))
-    # inputs.append(httpclient.InferInput("INPUT1", [1, 16], "INT32"))
+    inputs.append(httpclient.InferInput("input_0", [1, 512], "INT64"))
     
-    input0_data = np.arange(start=0, stop=14, dtype=np.int64)
+    input0_data = np.arange(start=0, stop=512, dtype=np.int64)
     input0_data = np.expand_dims(input0_data, axis=0)
-    input1_data = np.full(shape=(1, 14), fill_value=-1, dtype=np.int64)
 
     # Initialize the data
     inputs[0].set_data_from_numpy(input0_data, binary_data=False)
-    # inputs[1].set_data_from_numpy(input1_data, binary_data=True)
 
-    outputs.append(httpclient.InferRequestedOutput("OUTPUT0", binary_data=True))
-    outputs.append(httpclient.InferRequestedOutput("OUTPUT1", binary_data=False))
-    query_params = {"test_1": 1, "test_2": 2}
+    outputs.append(httpclient.InferRequestedOutput("output_0", binary_data=False))
+
+    # query_params = {"test_1": 1, "test_2": 2}
     results = triton_client.infer(
         model_name,
         inputs,
         # outputs=outputs,
-        query_params=query_params,
+        # query_params=query_params,
         # headers=headers,
         # request_compression_algorithm=request_compression_algorithm,
         # response_compression_algorithm=response_compression_algorithm,
