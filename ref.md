@@ -29,6 +29,9 @@ latency = 10000
 
 # https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_configuration.md#delayed-batching
 
+# https://towardsdatascience.com/hugging-face-transformer-inference-under-1-millisecond-latency-e1be0057a51c
+
+# https://blog.ml6.eu/triton-ensemble-model-for-deploying-transformers-into-production-c0f727c012e3
 
 
 
