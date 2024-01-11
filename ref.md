@@ -35,6 +35,7 @@ latency = 10000
 
 # https://www.youtube.com/watch?v=P7dvC31Ggxk&t=2262s
 
+https://developer.nvidia.com/blog/identifying-the-best-ai-model-serving-configurations-at-scale-with-triton-model-analyzer/
 
 
 with tritonhttpclient.InferenceServerClient(url=url, verbose=False, concurrency=32) as client:
