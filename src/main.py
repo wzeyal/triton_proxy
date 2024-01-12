@@ -8,10 +8,10 @@ import uvicorn
 
 app = FastAPI()
 
-triton_client = httpclient.InferenceServerClient(url='localhost:8000', ssl=False, concurrency=3)
+triton_client = httpclient.InferenceServerClient(url='172.17.0.1:8000', ssl=False, concurrency=3)
 
 @app.get("/infer")
-def create_item():
+async def create_item():
     model_name = "sentiment_model"
 
     inputs = []
@@ -42,4 +42,8 @@ def create_item():
 
 
 if __name__ == "__main__":
-    uvicorn.run('main:app', host="127.0.0.1", port=8080, workers=8)
+    uvicorn.run(
+        'main:app',
+        host="0.0.0.0",
+        port=8080, workers=8
+    )
