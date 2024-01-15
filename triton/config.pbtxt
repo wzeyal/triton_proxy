@@ -1,0 +1,29 @@
+name: "sentiment_model"
+platform: "onnxruntime_onnx"
+backend: "onnxruntime"
+default_model_filename: "sentiment_model.onnx"
+
+max_batch_size: 64
+
+
+input [
+  {
+    name: "input_0"
+    data_type: TYPE_INT64
+    dims: [512]  # Assuming max sequence length is 512
+  }
+]
+
+
+
+instance_group [
+  {
+    count: 3
+    kind: KIND_GPU
+    gpus: [0]  # Specify the GPU device index
+  }
+]
+
+dynamic_batching {
+    max_queue_delay_microseconds: 100
+}
